@@ -3,1252 +3,746 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Reform Circle - Youth Leadership & Advocacy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>The Reform Circle - Empowering Youth Leadership & Social Impact</title>
+    <meta name="description" content="Transforming youth leadership through innovative programs, advocacy, and community impact. Join the movement shaping tomorrow's leaders.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a2332',
+                        'secondary': '#ff6b6b',
+                        'accent': '#4ecdc4',
+                        'neutral': '#f8f9fa',
+                        'text': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        /* CSS Variables - Vibrant Color Palette */
-        :root {
-            --primary: #2563eb;
-            --primary-light: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --secondary: #ec4899;
-            --secondary-light: #f472b6;
-            --accent: #06b6d4;
-            --accent-light: #22d3ee;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --text: #334155;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --gray: #94a3b8;
-            --light-gray: #f1f5f9;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-light));
-            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-light));
-            --gradient-hero: linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(6, 182, 212, 0.85) 100%);
-            --border-radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            line-height: 1.7;
-            color: var(--text);
-            background-color: var(--light);
-            overflow-x: hidden;
-            font-weight: 400;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 1rem;
+        /* Custom Styles */
+        .hero-bg {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 50%, #34495e 100%);
             position: relative;
             overflow: hidden;
-            letter-spacing: 0.5px;
         }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--gradient-secondary);
-            color: white;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .section {
-            padding: 120px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: 800;
-            position: relative;
-            display: inline-block;
-            letter-spacing: -0.5px;
-        }
-
-        .section-title h2::after {
+        
+        .hero-bg::before {
             content: '';
             position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: var(--gradient-accent);
-            border-radius: 3px;
-        }
-
-        .section-title p {
-            max-width: 700px;
-            margin: 30px auto 0;
-            font-size: 1.25rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* Header Styles - Enhanced */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 55px;
-            height: 55px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-            transition: var(--transition);
-        }
-
-        .logo:hover .logo-icon {
-            transform: rotate(180deg);
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-text h1 {
-            font-size: 1.7rem;
-            color: var(--primary);
-            line-height: 1;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            position: relative;
-            font-size: 1.05rem;
-            transition: var(--transition);
-            padding: 8px 0;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: 0;
             left: 0;
-            background: var(--gradient-accent);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            margin-left: 10px;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-            background: none;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .mobile-menu-btn:hover {
-            background-color: rgba(37, 99, 235, 0.1);
-        }
-
-        /* Hero Section - Enhanced */
-        .hero {
-            background: var(--gradient-hero), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            padding: 220px 0 140px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
+            right: 0;
             bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(to top, var(--light), transparent);
+            background: url('resources/background-mesh.png') center/cover;
+            opacity: 0.1;
             z-index: 1;
         }
-
+        
         .hero-content {
-            max-width: 950px;
-            margin: 0 auto;
             position: relative;
             z-index: 2;
         }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 30px;
-            line-height: 1.1;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            letter-spacing: -1px;
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            opacity: 0.95;
-            font-weight: 400;
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 50px;
-            flex-wrap: wrap;
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
-        /* About Section - Enhanced */
-        .about {
-            position: relative;
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            transition: all 0.3s ease;
         }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 70px;
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
         }
-
-        .about-text {
-            flex: 1;
+        
+        .btn-secondary {
+            border: 2px solid #ff6b6b;
+            color: #ff6b6b;
+            transition: all 0.3s ease;
         }
-
-        .about-text h3 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .about-text p {
-            margin-bottom: 25px;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text);
-        }
-
-        .mission-vision {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-            margin-top: 50px;
-        }
-
-        .mission-box, .vision-box {
-            background: white;
-            padding: 35px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border-left: 5px solid var(--accent);
-            transition: var(--transition);
-        }
-
-        .mission-box:hover, .vision-box:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .mission-box h4, .vision-box h4 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .mission-box h4 i, .vision-box h4 i {
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-hover);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: var(--transition);
-        }
-
-        .about-image:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Programs Section - Enhanced */
-        .programs {
-            background-color: var(--light-gray);
-            position: relative;
-        }
-
-        .program-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 35px;
-        }
-
-        .program-card {
-            background-color: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .program-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .program-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .btn-secondary:hover {
+            background: #ff6b6b;
             color: white;
-            font-size: 2rem;
-            margin: 40px auto 25px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
         }
-
-        .program-card:hover .program-icon {
-            transform: scale(1.1) rotate(5deg);
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
         }
-
-        .program-content {
-            padding: 0 35px 40px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .program-content h3 {
-            font-size: 1.7rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .program-content p {
-            margin-bottom: 25px;
-            color: var(--text-light);
-            line-height: 1.7;
-            flex-grow: 1;
-        }
-
-        /* Impact Section - Enhanced */
-        .impact {
-            background: var(--gradient-primary);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .impact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="1000,100 1000,0 0,100"></polygon></svg>');
-            background-size: cover;
-        }
-
-        .impact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .impact-item {
-            padding: 20px;
-        }
-
-        .impact-item h3 {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            font-weight: 800;
-            position: relative;
-            display: inline-block;
-        }
-
-        .impact-item h3::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        .impact-item p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-top: 25px;
-        }
-
-        /* Events Section - Enhanced */
-        .events {
-            position: relative;
-        }
-
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-        }
-
-        .event-card {
-            background-color: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .event-img {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .event-img::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-        }
-
-        .event-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .event-card:hover .event-img img {
-            transform: scale(1.1);
-        }
-
-        .event-content {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .event-date {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 10px 18px;
-            border-radius: 50px;
-            font-size: 0.95rem;
+        
+        .counter {
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 600;
-            margin-bottom: 20px;
-            align-self: flex-start;
         }
-
-        .event-content h3 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            line-height: 1.4;
+        
+        .form-input {
+            transition: all 0.3s ease;
         }
-
-        .event-content p {
-            margin-bottom: 25px;
-            color: var(--text-light);
-            line-height: 1.7;
-            flex-grow: 1;
+        
+        .form-input:focus {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
-
-        /* CTA Section - Enhanced */
-        .cta {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.9) 100%), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 140px 0;
-            position: relative;
-            overflow: hidden;
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-50px);
         }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="0,0 1000,100 1000,0"></polygon></svg>');
-            background-size: cover;
+        
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .cta-content {
-            max-width: 850px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+        
+        .program-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .cta h2 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            font-weight: 800;
-            line-height: 1.1;
+        
+        .program-card:hover .program-overlay {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .cta p {
-            font-size: 1.4rem;
-            max-width: 750px;
-            margin: 0 auto 50px;
-            line-height: 1.7;
-            opacity: 0.95;
+        
+        .program-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
         }
-
-        /* Footer - Enhanced */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 100px 0 40px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 60px;
-            margin-bottom: 70px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient-accent);
-            border-radius: 2px;
-        }
-
-        .footer-links li {
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-links i {
-            margin-right: 12px;
-            width: 20px;
-            color: var(--accent);
-        }
-
-        .footer-links a {
-            transition: var(--transition);
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            font-size: 1.3rem;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .newsletter-input {
-            padding: 16px 20px;
-            border-radius: 50px;
-            border: none;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: var(--transition);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 2px var(--accent);
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer-bottom .heart {
-            color: var(--secondary);
-            animation: heartbeat 1.5s ease infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            5% { transform: scale(1.1); }
-            10% { transform: scale(1); }
-            15% { transform: scale(1.1); }
-            20% { transform: scale(1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Responsive Styles - Enhanced */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .about-content {
-                gap: 50px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image {
-                order: -1;
-                max-width: 650px;
-                margin: 0 auto;
-            }
-
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-
-            .mission-vision {
-                grid-template-columns: 1fr;
-            }
-
-            .cta h2 {
-                font-size: 2.8rem;
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 90px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 90px);
-                background-color: white;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 80px;
-                gap: 35px;
-                transition: left 0.4s ease;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 180px 0 120px;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 320px;
-            }
-
-            .section {
-                padding: 100px 0;
-            }
-
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-
-            .cta h2 {
-                font-size: 2.4rem;
-            }
-
-            .cta p {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .impact-item h3 {
-                font-size: 3.2rem;
-            }
-
-            .program-cards, .events-container {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .logo-text h1 {
-                font-size: 1.5rem;
+            .hero-bg {
+                min-height: 100vh;
             }
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#home" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-sync-alt"></i>
+<body class="bg-neutral text-text font-body">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">TR</span>
                     </div>
-                    <div class="logo-text">
-                        <h1>The Reform Circle</h1>
-                        <span>Reforming Continues</span>
-                    </div>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#programs">Programs</a></li>
-                    <li><a href="#impact">Impact</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="nav-cta"><a href="#" class="btn btn-primary">Join Us</a></li>
-                </ul>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
+                    <span class="font-bold text-xl text-primary">The Reform Circle</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-text hover:text-secondary transition-colors font-medium">Home</a>
+                    <a href="about.html" class="text-text hover:text-secondary transition-colors font-medium">About</a>
+                    <a href="programs.html" class="text-text hover:text-secondary transition-colors font-medium">Programs</a>
+                    <a href="contact.html" class="text-text hover:text-secondary transition-colors font-medium">Contact</a>
+                    <button class="btn-primary px-6 py-2 rounded-lg text-white font-medium">Partner With Us</button>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-text hover:text-secondary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-    </header>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#home" class="block text-text hover:text-secondary transition-colors font-medium">Home</a>
+                <a href="about.html" class="block text-text hover:text-secondary transition-colors font-medium">About</a>
+                <a href="programs.html" class="block text-text hover:text-secondary transition-colors font-medium">Programs</a>
+                <a href="contact.html" class="block text-text hover:text-secondary transition-colors font-medium">Contact</a>
+                <button class="btn-primary px-6 py-2 rounded-lg text-white font-medium w-full">Partner With Us</button>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Youth-Led Leadership & Advocacy</h1>
-                <p>We're building a community of young people who don't just talk about change — they drive it. Join The Reform Circle and be part of the movement.</p>
-                <div class="hero-btns">
-                    <a href="#programs" class="btn btn-primary">Our Programs</a>
-                    <a href="#" class="btn btn-secondary">Join The Movement</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About The Reform Circle</h2>
-                <p>A youth-led movement focused on leadership, advocacy, and social impact.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Building Leaders Who Drive Change</h3>
-                    <p>We're building a community of young people who don't just talk about change — they drive it. Our goal is to help students and youth understand how governance works, how decisions are made, and how much influence they actually have when they step up with purpose.</p>
-                    <p>We kicked off with <strong>The G.A.M.E Seminar</strong>, where we brought together policymakers, student leaders, and change-driven youths to spark conversations on leadership and civic participation.</p>
-                    <p>Now, we're stepping into a new phase — one focused on consistent engagement, real community action, and honest conversations about leadership and reform.</p>
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-16">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Empowering <span class="gradient-text" id="typed-text"></span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl mb-8 text-gray-200 leading-relaxed">
+                        Transforming communities through innovative youth leadership programs, advocacy initiatives, and social impact projects that create lasting change.
+                    </p>
                     
-                    <div class="mission-vision">
-                        <div class="mission-box">
-                            <h4><i class="fas fa-bullseye"></i> Our Mission</h4>
-                            <p>To empower young people with the knowledge, skills, and platform to actively participate in governance and drive meaningful social change.</p>
+                    <!-- Impact Metrics -->
+                    <div class="grid grid-cols-3 gap-6 mb-8">
+                        <div class="text-center">
+                            <div class="counter text-3xl font-bold text-secondary mb-2" data-target="2500">0</div>
+                            <div class="text-sm text-gray-300">Youth Leaders</div>
                         </div>
-                        <div class="vision-box">
-                            <h4><i class="fas fa-eye"></i> Our Vision</h4>
-                            <p>A generation of informed, inspired, and ready-to-lead youth actively shaping the future of their communities and nation.</p>
+                        <div class="text-center">
+                            <div class="counter text-3xl font-bold text-accent mb-2" data-target="150">0</div>
+                            <div class="text-sm text-gray-300">Communities</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="counter text-3xl font-bold text-secondary mb-2" data-target="95">0</div>
+                            <div class="text-sm text-gray-300">Success Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="btn-primary px-8 py-4 rounded-lg text-white font-semibold text-lg">
+                            Partner With Us
+                        </button>
+                        <button class="btn-secondary px-8 py-4 rounded-lg font-semibold text-lg bg-transparent">
+                            View Impact Report
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <img src="resources/hero-image.png" alt="Young leaders collaborating" class="rounded-2xl shadow-2xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="font-semibold text-text">Active Programs</span>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Youth leadership discussion">
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Programs Section -->
-    <section class="section programs" id="programs">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Signature Programs</h2>
-                <p>Through our initiatives, we're shaping a generation that's informed, inspired, and ready to lead.</p>
+    <!-- Program Explorer -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mb-6">Our Programs</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive leadership development programs designed to empower young people with the skills, knowledge, and networks needed to drive meaningful change.
+                </p>
             </div>
-            <div class="program-cards">
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <div class="program-content">
-                        <h3>Pulse Dialogues</h3>
-                        <p>Monthly youth conversations that tackle pressing issues, foster dialogue, and create platforms for young voices to be heard on matters that affect their future.</p>
-                        <a href="#" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="program-content">
-                        <h3>Faculty Roundtables</h3>
-                        <p>Campus leadership forums that bring together student leaders, faculty, and administrators to discuss governance, policy, and student representation.</p>
-                        <a href="#" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <div class="program-content">
-                        <h3>Community Projects</h3>
-                        <p>Impact-driven outreach initiatives that translate dialogue into action, addressing real community needs while developing leadership skills.</p>
-                        <a href="#" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
+            
+            <!-- Program Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
+                <button class="program-filter active px-6 py-3 rounded-full bg-secondary text-white font-medium" data-filter="all">
+                    All Programs
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-colors" data-filter="leadership">
+                    Leadership
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-colors" data-filter="advocacy">
+                    Advocacy
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-colors" data-filter="mentorship">
+                    Mentorship
+                </button>
             </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section class="section impact" id="impact">
-        <div class="container">
-            <div class="section-title" style="color: white;">
-                <h2>Our Impact</h2>
-                <p>Measuring our progress in building the next generation of leaders.</p>
-            </div>
-            <div class="impact-container">
-                <div class="impact-item">
-                    <h3>500+</h3>
-                    <p>Youth Engaged</p>
-                </div>
-                <div class="impact-item">
-                    <h3>15+</h3>
-                    <p>Events Hosted</p>
-                </div>
-                <div class="impact-item">
-                    <h3>8</h3>
-                    <p>Campuses Reached</p>
-                </div>
-                <div class="impact-item">
-                    <h3>3</h3>
-                    <p>Community Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="section events" id="events">
-        <div class="container">
-            <div class="section-title">
-                <h2>Upcoming Events</h2>
-                <p>Join us for our next activities and be part of the conversation.</p>
-            </div>
-            <div class="events-container">
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Youth Dialogue Event">
+            
+            <!-- Program Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="program-grid">
+                <div class="program-card card-hover rounded-2xl p-6 reveal" data-category="leadership">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/static1.de.squarespace.com/997337068667c0b9ba62489a247314ab83b2ad82.jpg" alt="Leadership Program" class="w-full h-48 object-cover">
+                        <div class="program-overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <div class="text-white">
+                                <h3 class="text-xl font-bold mb-2">Emerging Leaders</h3>
+                                <p class="text-sm opacity-90">12-week intensive program</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="event-content">
-                        <span class="event-date">June 25, 2023</span>
-                        <h3>Pulse Dialogue: Youth in Governance</h3>
-                        <p>Join our monthly conversation on increasing youth participation in governance structures and decision-making processes.</p>
-                        <a href="#" class="btn btn-primary">Register Now</a>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-secondary">Duration: 12 weeks</span>
+                            <span class="text-sm font-medium text-accent">Cohort-based</span>
+                        </div>
+                        <p class="text-gray-600">Develop core leadership competencies through hands-on projects, mentorship, and peer collaboration.</p>
+                        <div class="flex items-center space-x-4 text-sm text-gray-500">
+                            <span>📊 95% completion rate</span>
+                            <span>🎯 200+ graduates</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Leadership Workshop">
+                
+                <div class="program-card card-hover rounded-2xl p-6 reveal" data-category="advocacy">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/c09fda79446832fb1fa2bfcdec2995099f2ecbb0.jpg" alt="Advocacy Program" class="w-full h-48 object-cover">
+                        <div class="program-overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <div class="text-white">
+                                <h3 class="text-xl font-bold mb-2">Policy Advocates</h3>
+                                <p class="text-sm opacity-90">6-month fellowship</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="event-content">
-                        <span class="event-date">July 12, 2023</span>
-                        <h3>Campus Leadership Roundtable</h3>
-                        <p>A forum for student leaders to discuss challenges, share best practices, and develop strategies for effective campus governance.</p>
-                        <a href="#" class="btn btn-primary">Register Now</a>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-secondary">Duration: 6 months</span>
+                            <span class="text-sm font-medium text-accent">Individual projects</span>
+                        </div>
+                        <p class="text-gray-600">Learn advocacy strategies and policy analysis to drive systemic change in communities.</p>
+                        <div class="flex items-center space-x-4 text-sm text-gray-500">
+                            <span>📊 12 policy wins</span>
+                            <span>🎯 50+ advocates</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Community Outreach">
+                
+                <div class="program-card card-hover rounded-2xl p-6 reveal" data-category="mentorship">
+                    <div class="relative overflow-hidden rounded-xl mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.displaynote.com/17a0be149bf7925ffdf804881077563d5b0245f5.jpg" alt="Mentorship Program" class="w-full h-48 object-cover">
+                        <div class="program-overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <div class="text-white">
+                                <h3 class="text-xl font-bold mb-2">Mentorship Network</h3>
+                                <p class="text-sm opacity-90">Ongoing support</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="event-content">
-                        <span class="event-date">July 28, 2023</span>
-                        <h3>Community Clean-Up Drive</h3>
-                        <p>Join us for our monthly community outreach as we partner with local organizations to make a tangible impact in our neighborhoods.</p>
-                        <a href="#" class="btn btn-primary">Volunteer Now</a>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-secondary">Duration: Flexible</span>
+                            <span class="text-sm font-medium text-accent">1-on-1 matching</span>
+                        </div>
+                        <p class="text-gray-600">Connect with industry leaders and experienced professionals for personalized guidance and support.</p>
+                        <div class="flex items-center space-x-4 text-sm text-gray-500">
+                            <span>📊 300+ mentors</span>
+                            <span>🎯 500+ mentees</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Make a Difference?</h2>
-                <p>Join The Reform Circle today and become part of a movement that's shaping the future through youth leadership and advocacy.</p>
-                <a href="#" class="btn btn-secondary">Join The Movement</a>
+    <!-- Partnership Form -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mb-6">Partner With Us</h2>
+                <p class="text-xl text-gray-600">
+                    Join our network of organizations, investors, and leaders committed to empowering the next generation of changemakers.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 lg:p-12 reveal">
+                <!-- Progress Indicator -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-bold">1</div>
+                        <span class="text-sm font-medium text-secondary">Contact Info</span>
+                    </div>
+                    <div class="flex-1 h-1 bg-gray-200 mx-4">
+                        <div id="progress-bar" class="h-1 bg-secondary transition-all duration-300" style="width: 33%"></div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">2</div>
+                        <span class="text-sm font-medium text-gray-500">Partnership Details</span>
+                    </div>
+                    <div class="flex-1 h-1 bg-gray-200 mx-4"></div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-sm font-bold">3</div>
+                        <span class="text-sm font-medium text-gray-500">Timeline</span>
+                    </div>
+                </div>
+                
+                <form id="partnership-form">
+                    <!-- Step 1: Contact Information -->
+                    <div id="step-1" class="form-step">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Contact Information</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Full Name *</label>
+                                <input type="text" name="fullName" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Email Address *</label>
+                                <input type="email" name="email" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Organization *</label>
+                                <input type="text" name="organization" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Role/Title *</label>
+                                <input type="text" name="role" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-text mb-2">Phone Number</label>
+                                <input type="tel" name="phone" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="flex justify-end mt-8">
+                            <button type="button" id="next-step-1" class="btn-primary px-8 py-3 rounded-lg text-white font-semibold">
+                                Next Step →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Partnership Details -->
+                    <div id="step-2" class="form-step hidden">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Partnership Details</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Partnership Type *</label>
+                                <select name="partnershipType" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                    <option value="">Select partnership type</option>
+                                    <option value="funding">Funding Partner</option>
+                                    <option value="program">Program Partner</option>
+                                    <option value="mentorship">Mentorship Partner</option>
+                                    <option value="resource">Resource Partner</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Investment Level</label>
+                                <select name="investmentLevel" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                    <option value="">Select investment range</option>
+                                    <option value="under-10k">Under $10,000</option>
+                                    <option value="10k-50k">$10,000 - $50,000</option>
+                                    <option value="50k-100k">$50,000 - $100,000</option>
+                                    <option value="100k-500k">$100,000 - $500,000</option>
+                                    <option value="over-500k">Over $500,000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">How did you hear about us?</label>
+                                <select name="referralSource" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                    <option value="">Select source</option>
+                                    <option value="website">Website/Online Search</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="referral">Referral</option>
+                                    <option value="event">Event/Conference</option>
+                                    <option value="media">Media Coverage</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Tell us about your interest in partnering</label>
+                                <textarea name="interestDetails" rows="4" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="What interests you about our mission and programs?"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-8">
+                            <button type="button" id="prev-step-2" class="btn-secondary px-8 py-3 rounded-lg font-semibold">
+                                ← Previous
+                            </button>
+                            <button type="button" id="next-step-2" class="btn-primary px-8 py-3 rounded-lg text-white font-semibold">
+                                Next Step →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Timeline -->
+                    <div id="step-3" class="form-step hidden">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Timeline & Next Steps</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">When would you like to start? *</label>
+                                <select name="timeline" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                    <option value="">Select timeline</option>
+                                    <option value="immediate">Immediately</option>
+                                    <option value="1-3-months">1-3 months</option>
+                                    <option value="3-6-months">3-6 months</option>
+                                    <option value="6-12-months">6-12 months</option>
+                                    <option value="exploring">Just exploring</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Preferred contact method</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="contactMethod" value="email" class="mr-2" checked>
+                                        <span>Email</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="contactMethod" value="phone" class="mr-2">
+                                        <span>Phone call</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="contactMethod" value="meeting" class="mr-2">
+                                        <span>In-person meeting</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Additional comments or questions</label>
+                                <textarea name="additionalComments" rows="4" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Any specific questions or additional information you'd like to share?"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-8">
+                            <button type="button" id="prev-step-3" class="btn-secondary px-8 py-3 rounded-lg font-semibold">
+                                ← Previous
+                            </button>
+                            <button type="submit" class="btn-primary px-8 py-3 rounded-lg text-white font-semibold">
+                                Submit Partnership Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Timeline -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mb-6">Our Journey</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From a small initiative to a movement transforming youth leadership across communities.
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-secondary to-accent"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-2">Founded</h3>
+                                <p class="text-gray-600 mb-2">The Reform Circle established with a mission to empower youth leadership.</p>
+                                <span class="text-sm font-medium text-secondary">2020</span>
+                            </div>
+                        </div>
+                        <div class="w-4 h-4 bg-secondary rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-2">First Cohort</h3>
+                                <p class="text-gray-600 mb-2">Launched our flagship Emerging Leaders program with 25 participants.</p>
+                                <span class="text-sm font-medium text-accent">2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-2">Scale & Impact</h3>
+                                <p class="text-gray-600 mb-2">Expanded to 5 cities, reaching 500+ young leaders annually.</p>
+                                <span class="text-sm font-medium text-secondary">2022</span>
+                            </div>
+                        </div>
+                        <div class="w-4 h-4 bg-secondary rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-2">Policy Impact</h3>
+                                <p class="text-gray-600 mb-2">Advocacy programs achieved 12 major policy wins at local and state levels.</p>
+                                <span class="text-sm font-medium text-accent">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-2">National Expansion</h3>
+                                <p class="text-gray-600 mb-2">Launched national programs and secured Series A funding for growth.</p>
+                                <span class="text-sm font-medium text-secondary">2024</span>
+                            </div>
+                        </div>
+                        <div class="w-4 h-4 bg-secondary rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mb-6">Trusted By Leaders</h2>
+                <p class="text-xl text-gray-600">
+                    Join the organizations and individuals who believe in our mission.
+                </p>
+            </div>
+            
+            <!-- Logo Marquee -->
+            <div class="overflow-hidden mb-16">
+                <div class="flex items-center space-x-12 animate-marquee">
+                    <div class="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <span class="font-bold text-primary">TechCorp</span>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <span class="font-bold text-secondary">ImpactFund</span>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <span class="font-bold text-accent">YouthOrg</span>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <span class="font-bold text-primary">FutureLab</span>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <span class="font-bold text-secondary">Social+</span>
+                    </div>
+                    <div class="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <span class="font-bold text-accent">ChangeNow</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            SM
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-primary">Sarah Martinez</h4>
+                            <p class="text-sm text-gray-600">CEO, TechForward</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The Reform Circle's approach to youth leadership is transformational. We've seen incredible results from our partnership."</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            MJ
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-primary">Marcus Johnson</h4>
+                            <p class="text-sm text-gray-600">Program Director, Impact Foundation</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The impact metrics speak for themselves. This is how you build the next generation of leaders."</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            AC
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-primary">Amanda Chen</h4>
+                            <p class="text-sm text-gray-600">Former Program Graduate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"This program changed my life. I went from being shy to leading community initiatives with confidence."</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p>The Reform Circle is a youth-led movement focused on leadership, advocacy, and social impact. We're building a community of young people who don't just talk about change — they drive it.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">TR</span>
+                        </div>
+                        <span class="font-bold text-xl">The Reform Circle</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Empowering youth leadership through innovative programs, advocacy, and community impact. Together, we're building tomorrow's leaders today.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-chevron-right"></i><a href="#home">Home</a></li>
-                        <li><i class="fas fa-chevron-right"></i><a href="#about">About Us</a></li>
-                        <li><i class="fas fa-chevron-right"></i><a href="#programs">Our Programs</a></li>
-                        <li><i class="fas fa-chevron-right"></i><a href="#impact">Our Impact</a></li>
-                        <li><i class="fas fa-chevron-right"></i><a href="#events">Events</a></li>
-                        <li><i class="fas fa-chevron-right"></i><a href="#contact">Contact Us</a></li>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Programs</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Emerging Leaders</a></li>
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Policy Advocates</a></li>
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Mentorship Network</a></li>
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Community Impact</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i><a href="#">123 Youth Center, Metro City</a></li>
-                        <li><i class="fas fa-phone"></i><a href="#">+1 (555) 123-4567</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="#">info@reformcircle.org</a></li>
-                        <li><i class="fas fa-clock"></i><a href="#">Mon - Fri: 9AM - 5PM</a></li>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="about.html" class="hover:text-secondary transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-secondary transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-secondary transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-secondary transition-colors">Press</a></li>
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to our newsletter to stay updated with our latest programs and events.</p>
-                    <form class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Your Email Address" required>
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 The Reform Circle. All rights reserved. Made with <span class="heart">❤</span> by youth for youth.</p>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 The Reform Circle. All rights reserved. Empowering youth leadership for a better tomorrow.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.padding = '20px 0';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>

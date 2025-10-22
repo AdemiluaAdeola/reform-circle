@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs - The Reform Circle</title>
+    <meta name="description" content="Explore our comprehensive youth leadership programs including Emerging Leaders, Policy Advocates, and Mentorship Network.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a2332',
+                        'secondary': '#ff6b6b',
+                        'accent': '#4ecdc4',
+                        'neutral': '#f8f9fa',
+                        'text': '#2c3e50'
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 50%, #34495e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('resources/background-mesh.png') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .program-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .program-card:hover .program-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .program-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .filter-active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: white;
+        }
+        
+        .modal {
+            backdrop-filter: blur(10px);
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-neutral text-text font-body">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">TR</span>
+                    </div>
+                    <span class="font-bold text-xl text-primary">The Reform Circle</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-text hover:text-secondary transition-colors font-medium">Home</a>
+                    <a href="about.html" class="text-text hover:text-secondary transition-colors font-medium">About</a>
+                    <a href="programs.html" class="text-secondary font-medium">Programs</a>
+                    <a href="contact.html" class="text-text hover:text-secondary transition-colors font-medium">Contact</a>
+                    <button class="bg-secondary px-6 py-2 rounded-lg text-white font-medium hover:bg-opacity-90 transition-colors">Partner With Us</button>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-text hover:text-secondary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-4 space-y-4">
+                <a href="index.html" class="block text-text hover:text-secondary transition-colors font-medium">Home</a>
+                <a href="about.html" class="block text-text hover:text-secondary transition-colors font-medium">About</a>
+                <a href="programs.html" class="block text-secondary font-medium">Programs</a>
+                <a href="contact.html" class="block text-text hover:text-secondary transition-colors font-medium">Contact</a>
+                <button class="bg-secondary px-6 py-2 rounded-lg text-white font-medium w-full">Partner With Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-24 pb-16">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6">Our Programs</h1>
+                <p class="text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
+                    Comprehensive leadership development programs designed to empower young people with the skills, 
+                    knowledge, and networks needed to drive meaningful change.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Filters -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4 reveal">
+                <button class="program-filter filter-active px-6 py-3 rounded-full font-medium transition-all" data-filter="all">
+                    All Programs
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-all" data-filter="leadership">
+                    Leadership Development
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-all" data-filter="advocacy">
+                    Policy & Advocacy
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-all" data-filter="mentorship">
+                    Mentorship & Support
+                </button>
+                <button class="program-filter px-6 py-3 rounded-full bg-gray-100 text-text font-medium hover:bg-secondary hover:text-white transition-all" data-filter="community">
+                    Community Impact
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Grid -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12" id="programs-container">
+                
+                <!-- Emerging Leaders Program -->
+                <div class="program-card card-hover rounded-2xl overflow-hidden reveal" data-category="leadership" data-program="emerging-leaders">
+                    <div class="relative h-64">
+                        <img src="https://kimi-web-img.moonshot.cn/img/static1.de.squarespace.com/997337068667c0b9ba62489a247314ab83b2ad82.jpg" alt="Emerging Leaders Program" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">Emerging Leaders Program</h3>
+                            <p class="text-sm opacity-90">12-week intensive leadership development</p>
+                        </div>
+                        <div class="absolute top-6 right-6">
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-secondary">12</div>
+                                    <div class="text-xs text-gray-500">Weeks</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-accent">25</div>
+                                    <div class="text-xs text-gray-500">Cohort Size</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-secondary">95%</div>
+                                    <div class="text-xs text-gray-500">Completion</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Our flagship program combines leadership theory with hands-on practice. Participants develop core competencies 
+                            through interactive workshops, peer collaboration, and real-world projects that create immediate community impact.
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Leadership assessment and personalized development plan
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Weekly workshops with industry experts and mentors
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Community impact project with measurable outcomes
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Next cohort: January 2025
+                            </div>
+                            <button class="bg-secondary text-white px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-colors" onclick="openProgramModal('emerging-leaders')">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Policy Advocates Program -->
+                <div class="program-card card-hover rounded-2xl overflow-hidden reveal" data-category="advocacy" data-program="policy-advocates">
+                    <div class="relative h-64">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/c09fda79446832fb1fa2bfcdec2995099f2ecbb0.jpg" alt="Policy Advocates Program" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">Policy Advocates Fellowship</h3>
+                            <p class="text-sm opacity-90">6-month policy and advocacy training</p>
+                        </div>
+                        <div class="absolute top-6 right-6">
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">High Impact</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-accent">6</div>
+                                    <div class="text-xs text-gray-500">Months</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-secondary">15</div>
+                                    <div class="text-xs text-gray-500">Fellows</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-accent">12</div>
+                                    <div class="text-xs text-gray-500">Policy Wins</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Intensive fellowship program for young people passionate about policy and advocacy. 
+                            Participants learn strategic advocacy, policy analysis, and campaign planning while working on real policy initiatives.
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Policy research and analysis training
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Direct engagement with policymakers
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Campaign strategy and implementation
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Applications open: March 2025
+                            </div>
+                            <button class="bg-accent text-white px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-colors" onclick="openProgramModal('policy-advocates')">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mentorship Network -->
+                <div class="program-card card-hover rounded-2xl overflow-hidden reveal" data-category="mentorship" data-program="mentorship-network">
+                    <div class="relative h-64">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.displaynote.com/17a0be149bf7925ffdf804881077563d5b0245f5.jpg" alt="Mentorship Network" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">Mentorship Network</h3>
+                            <p class="text-sm opacity-90">Ongoing mentorship and support</p>
+                        </div>
+                        <div class="absolute top-6 right-6">
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Flexible</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-secondary">300+</div>
+                                    <div class="text-xs text-gray-500">Mentors</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-accent">500+</div>
+                                    <div class="text-xs text-gray-500">Mentees</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-secondary">92%</div>
+                                    <div class="text-xs text-gray-500">Satisfaction</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Connect with experienced professionals and industry leaders for personalized guidance and support. 
+                            Our matching system ensures meaningful mentor-mentee relationships based on goals and interests.
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                AI-powered mentor-mentee matching
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Flexible scheduling and meeting formats
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Industry-specific mentorship tracks
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Rolling admissions
+                            </div>
+                            <button class="bg-secondary text-white px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-colors" onclick="openProgramModal('mentorship-network')">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Impact Labs -->
+                <div class="program-card card-hover rounded-2xl overflow-hidden reveal" data-category="community" data-program="community-impact">
+                    <div class="relative h-64">
+                        <img src="https://kimi-web-img.moonshot.cn/img/media.istockphoto.com/cb4795b9017136ee2adcb1820d8f3523600ab39b.jpg" alt="Community Impact Labs" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">Community Impact Labs</h3>
+                            <p class="text-sm opacity-90">Hands-on community problem-solving</p>
+                        </div>
+                        <div class="absolute top-6 right-6">
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Action-Oriented</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-accent">8</div>
+                                    <div class="text-xs text-gray-500">Weeks</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-secondary">20</div>
+                                    <div class="text-xs text-gray-500">Participants</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-accent">85%</div>
+                                    <div class="text-xs text-gray-500">Implementation</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Intensive design-thinking workshops where participants identify community challenges and 
+                            develop innovative solutions. Focus on rapid prototyping and real-world implementation.
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Design thinking and innovation methodology
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Community partner collaboration
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <svg class="w-4 h-4 mr-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Seed funding for pilot projects
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Next cohort: February 2025
+                            </div>
+                            <button class="bg-accent text-white px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-colors" onclick="openProgramModal('community-impact')">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Metrics -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mb-6">Program Impact</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our programs have created measurable change in communities across the country. 
+                    Here are some of our key impact metrics.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="text-center reveal">
+                    <div class="w-32 h-32 mx-auto mb-6 relative">
+                        <svg class="progress-ring w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="transparent"/>
+                            <circle cx="60" cy="60" r="50" stroke="#ff6b6b" stroke-width="8" fill="transparent" 
+                                    stroke-dasharray="314" stroke-dashoffset="31" class="progress-ring-circle"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-3xl font-bold text-secondary">95%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Program Completion</h3>
+                    <p class="text-gray-600">Of participants complete our programs</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="w-32 h-32 mx-auto mb-6 relative">
+                        <svg class="progress-ring w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="transparent"/>
+                            <circle cx="60" cy="60" r="50" stroke="#4ecdc4" stroke-width="8" fill="transparent" 
+                                    stroke-dasharray="314" stroke-dashoffset="47" class="progress-ring-circle"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-3xl font-bold text-accent">85%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Leadership Roles</h3>
+                    <p class="text-gray-600">Secure leadership positions within 2 years</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="w-32 h-32 mx-auto mb-6 relative">
+                        <svg class="progress-ring w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="transparent"/>
+                            <circle cx="60" cy="60" r="50" stroke="#ff6b6b" stroke-width="8" fill="transparent" 
+                                    stroke-dasharray="314" stroke-dashoffset="16" class="progress-ring-circle"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-3xl font-bold text-secondary">92%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Satisfaction Rate</h3>
+                    <p class="text-gray-600">Would recommend our programs</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="w-32 h-32 mx-auto mb-6 relative">
+                        <svg class="progress-ring w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="transparent"/>
+                            <circle cx="60" cy="60" r="50" stroke="#4ecdc4" stroke-width="8" fill="transparent" 
+                                    stroke-dasharray="314" stroke-dashoffset="63" class="progress-ring-circle"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-3xl font-bold text-accent">80%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Community Impact</h3>
+                    <p class="text-gray-600">Projects continue after program end</p>
+                </div>
+            </div>
+            
+            <!-- Impact Chart -->
+            <div class="bg-gray-50 rounded-2xl p-8 reveal">
+                <h3 class="text-2xl font-bold text-primary mb-6 text-center">Program Growth Over Time</h3>
+                <div id="impact-chart" style="height: 400px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-br from-secondary to-accent">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Join a Program?</h2>
+                <p class="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto">
+                    Take the next step in your leadership journey. Apply to one of our programs and 
+                    join a community of young leaders creating positive change.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-secondary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors" onclick="openApplicationModal()">
+                        Apply Now
+                    </button>
+                    <a href="contact.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-secondary transition-colors">
+                        Schedule Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Modal -->
+    <div id="program-modal" class="fixed inset-0 bg-black bg-opacity-50 modal hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <h2 id="modal-title" class="text-3xl font-bold text-primary"></h2>
+                    <button onclick="closeProgramModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div id="application-modal" class="fixed inset-0 bg-black bg-opacity-50 modal hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <h2 class="text-3xl font-bold text-primary">Program Application</h2>
+                    <button onclick="closeApplicationModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="application-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-2">First Name *</label>
+                            <input type="text" name="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-2">Last Name *</label>
+                            <input type="text" name="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-text mb-2">Email Address *</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-text mb-2">Program of Interest *</label>
+                        <select name="program" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary">
+                            <option value="">Select a program</option>
+                            <option value="emerging-leaders">Emerging Leaders Program</option>
+                            <option value="policy-advocates">Policy Advocates Fellowship</option>
+                            <option value="mentorship-network">Mentorship Network</option>
+                            <option value="community-impact">Community Impact Labs</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-text mb-2">Why are you interested in this program? *</label>
+                        <textarea name="motivation" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary" placeholder="Tell us about your goals and what you hope to achieve..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-text mb-2">Relevant Experience</label>
+                        <textarea name="experience" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary" placeholder="Any relevant leadership, volunteer, or community experience..."></textarea>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="w-4 h-4 text-secondary border-gray-300 rounded focus:ring-secondary">
+                        <label for="newsletter" class="text-sm text-gray-600">I'd like to receive updates about future programs and events</label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-secondary text-white py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">TR</span>
+                        </div>
+                        <span class="font-bold text-xl">The Reform Circle</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Empowering youth leadership through innovative programs, advocacy, and community impact. Together, we're building tomorrow's leaders today.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-secondary transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Programs</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Emerging Leaders</a></li>
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Policy Advocates</a></li>
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Mentorship Network</a></li>
+                        <li><a href="programs.html" class="hover:text-secondary transition-colors">Community Impact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="about.html" class="hover:text-secondary transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-secondary transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-secondary transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-secondary transition-colors">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 The Reform Circle. All rights reserved. Empowering youth leadership for a better tomorrow.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        // Programs page specific functionality
+        
+        // Initialize program filters
+        document.addEventListener('DOMContentLoaded', function() {
+            initProgramFilters();
+            initImpactChart();
+        });
+        
+        function initProgramFilters() {
+            const filterButtons = document.querySelectorAll('.program-filter');
+            const programCards = document.querySelectorAll('.program-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('filter-active');
+                        btn.classList.add('bg-gray-100', 'text-text');
+                    });
+                    
+                    this.classList.add('filter-active');
+                    this.classList.remove('bg-gray-100', 'text-text');
+                    
+                    // Filter cards with animation
+                    programCards.forEach((card, index) => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || category === filter) {
+                            anime({
+                                targets: card,
+                                opacity: [0, 1],
+                                scale: [0.8, 1],
+                                translateY: [20, 0],
+                                duration: 600,
+                                delay: index * 100,
+                                easing: 'easeOutCubic'
+                            });
+                            card.style.display = 'block';
+                        } else {
+                            anime({
+                                targets: card,
+                                opacity: 0,
+                                scale: 0.8,
+                                translateY: -20,
+                                duration: 300,
+                                complete: () => {
+                                    card.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        }
+        
+        function initImpactChart() {
+            const chartDom = document.getElementById('impact-chart');
+            const myChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['Participants', 'Communities', 'Policy Wins']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['2020', '2021', '2022', '2023', '2024']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: 'Participants',
+                        type: 'line',
+                        stack: 'Total',
+                        data: [25, 150, 400, 800, 1200],
+                        itemStyle: { color: '#ff6b6b' }
+                    },
+                    {
+                        name: 'Communities',
+                        type: 'line',
+                        stack: 'Total',
+                        data: [5, 25, 60, 100, 150],
+                        itemStyle: { color: '#4ecdc4' }
+                    },
+                    {
+                        name: 'Policy Wins',
+                        type: 'line',
+                        stack: 'Total',
+                        data: [0, 2, 5, 8, 12],
+                        itemStyle: { color: '#2c3e50' }
+                    }
+                ]
+            };
+            
+            myChart.setOption(option);
+            
+            // Responsive chart
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        }
+        
+        // Modal functionality
+        function openProgramModal(programId) {
+            const modal = document.getElementById('program-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            const programData = {
+                'emerging-leaders': {
+                    title: 'Emerging Leaders Program',
+                    content: `
+                        <div class="space-y-6">
+                            <div class="bg-gray-50 rounded-xl p-6">
+                                <h3 class="text-xl font-bold text-primary mb-4">Program Overview</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Our flagship 12-week program combines leadership theory with practical application. 
+                                    Participants develop core competencies through interactive workshops, peer collaboration, 
+                                    and real-world community impact projects.
+                                </p>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-secondary">12</div>
+                                        <div class="text-sm text-gray-500">Weeks</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-accent">25</div>
+                                        <div class="text-sm text-gray-500">Participants</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-secondary">95%</div>
+                                        <div class="text-sm text-gray-500">Completion Rate</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-4">What You'll Learn</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <svg class="w-5 h-5 text-secondary mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Leadership assessment and personalized development plan</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <svg class="w-5 h-5 text-secondary mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Communication and public speaking skills</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <svg class="w-5 h-5 text-secondary mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Team building and collaboration</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <svg class="w-5 h-5 text-secondary mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Project management and execution</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <svg class="w-5 h-5 text-secondary mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Community engagement strategies</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <svg class="w-5 h-5 text-secondary mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Personal leadership style development</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-4">Program Schedule</h3>
+                                <div class="bg-gray-50 rounded-xl p-6">
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h4 class="font-semibold text-primary mb-2">Duration</h4>
+                                            <p class="text-gray-600">12 weeks (January - March 2025)</p>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-primary mb-2">Time Commitment</h4>
+                                            <p class="text-gray-600">6 hours per week</p>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-primary mb-2">Format</h4>
+                                            <p class="text-gray-600">Hybrid (Online + In-person)</p>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-primary mb-2">Location</h4>
+                                            <p class="text-gray-600">Multiple cities available</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button class="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                    Apply Now
+                                </button>
+                                <button class="bg-gray-100 text-text px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                    Download Brochure
+                                </button>
+                            </div>
+                        </div>
+                    `
+                },
+                'policy-advocates': {
+                    title: 'Policy Advocates Fellowship',
+                    content: `
+                        <div class="space-y-6">
+                            <div class="bg-gray-50 rounded-xl p-6">
+                                <h3 class="text-xl font-bold text-primary mb-4">Fellowship Overview</h3>
+                                <p class="text-gray-600 mb-4">
+                                    A 6-month intensive fellowship for young people passionate about policy and advocacy. 
+                                    Participants learn strategic advocacy, policy analysis, and campaign planning while 
+                                    working on real policy initiatives.
+                                </p>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-accent">6</div>
+                                        <div class="text-sm text-gray-500">Months</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-secondary">15</div>
+                                        <div class="text-sm text-gray-500">Fellows</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-accent">12</div>
+                                        <div class="text-sm text-gray-500">Policy Wins</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-4">Fellowship Components</h3>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="bg-gray-50 rounded-xl p-6">
+                                        <h4 class="font-semibold text-primary mb-3">Policy Research & Analysis</h4>
+                                        <p class="text-gray-600 text-sm">Learn to conduct thorough policy research, analyze existing policies, and identify areas for improvement.</p>
+                                    </div>
+                                    <div class="bg-gray-50 rounded-xl p-6">
+                                        <h4 class="font-semibold text-primary mb-3">Campaign Strategy</h4>
+                                        <p class="text-gray-600 text-sm">Develop comprehensive advocacy campaigns from strategy development to implementation and evaluation.</p>
+                                    </div>
+                                    <div class="bg-gray-50 rounded-xl p-6">
+                                        <h4 class="font-semibold text-primary mb-3">Stakeholder Engagement</h4>
+                                        <p class="text-gray-600 text-sm">Build relationships with policymakers, community leaders, and media to advance policy goals.</p>
+                                    </div>
+                                    <div class="bg-gray-50 rounded-xl p-6">
+                                        <h4 class="font-semibold text-primary mb-3">Direct Advocacy</h4>
+                                        <p class="text-gray-600 text-sm">Engage directly with elected officials, testify at hearings, and participate in policy discussions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                                    Apply for Fellowship
+                                </button>
+                                <button class="bg-gray-100 text-text px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                    View Success Stories
+                                </button>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+            
+            if (programData[programId]) {
+                title.textContent = programData[programId].title;
+                content.innerHTML = programData[programId].content;
+                modal.classList.remove('hidden');
+                
+                // Animate modal
+                anime({
+                    targets: modal.querySelector('.bg-white'),
+                    opacity: [0, 1],
+                    scale: [0.8, 1],
+                    duration: 300,
+                    easing: 'easeOutCubic'
+                });
+            }
+        }
+        
+        function closeProgramModal() {
+            const modal = document.getElementById('program-modal');
+            modal.classList.add('hidden');
+        }
+        
+        function openApplicationModal() {
+            const modal = document.getElementById('application-modal');
+            modal.classList.remove('hidden');
+            
+            // Animate modal
+            anime({
+                targets: modal.querySelector('.bg-white'),
+                opacity: [0, 1],
+                scale: [0.8, 1],
+                duration: 300,
+                easing: 'easeOutCubic'
+            });
+        }
+        
+        function closeApplicationModal() {
+            const modal = document.getElementById('application-modal');
+            modal.classList.add('hidden');
+        }
+        
+        // Application form submission
+        document.getElementById('application-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'bg-green-50 border border-green-200 rounded-lg p-6 text-center';
+            successMessage.innerHTML = `
+                <div class="text-green-600 mb-4">
+                    <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-green-800 mb-2">Application Submitted!</h3>
+                <p class="text-green-600">Thank you for your application. We'll review it and get back to you within 5-7 business days.</p>
+            `;
+            
+            this.innerHTML = '';
+            this.appendChild(successMessage);
+            
+            // Animate success message
+            anime({
+                targets: successMessage,
+                opacity: [0, 1],
+                scale: [0.8, 1],
+                duration: 600,
+                easing: 'easeOutCubic'
+            });
+        });
+    </script>
+</body>
+</html>
